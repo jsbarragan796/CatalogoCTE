@@ -179,7 +179,7 @@
                             <div class="list-group">
                                 {% for actividad in actividades %}
                                     {% if actividad.estado == 3 or actividad.estado == 4%}
-                                        <a class="list-group-item" id="{{ actividad.nombre }}" href="{% url 'catalogo:actividad_detail' actividad.id %}">{{ actividad.nombre }}</a>
+                                        <a class="list-group-item" href="{% url 'catalogo:actividad_detail' actividad.id %}">{{ actividad.nombre }}</a>
                                     {% endif %}
                                 {% endfor %}
                             </div>
