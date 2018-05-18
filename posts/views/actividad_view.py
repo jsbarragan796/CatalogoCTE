@@ -80,9 +80,10 @@ def actividad_update(request, pk):
                 revisor2 = 0
                 autor = request.user.id
                 actividad_n = Actividad.objects.create(id_anterior=pk, nombre=nombre,
-                                                           instrucciones=instrucciones, estado=estado,
-                                                           revisor1=revisor1, revisor2=revisor2, autor=autor,
-                                                           descripcion=descripcion, url=url)
+                                                       instrucciones=instrucciones, estado=estado,
+                                                       revisor1=revisor1, revisor2=revisor2, autor=autor,
+                                                       descripcion=descripcion, url=url,
+                                                       herramienta=actividad.herramienta)
                 actividad_n.save()
                 if estado == 1:
                     messages.success(request, 'La actividad ' + str(actividad.nombre) +
