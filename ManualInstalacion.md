@@ -1,4 +1,4 @@
-# Manual para la instalación de la solución
+# Manual para la instalación de la aplicación
 ## GITHUB
 #### Realice un Fork del proyecto en su cuenta de github.
 
@@ -22,18 +22,18 @@
 *  ```HOST_DB```las credenciales de su Host en heroku-postgres
 #####
 ## Azure
-#### Cree una cuenta en [Azure](https://azure.microsoft.com/es-es/free/students) , (se aconseja crear la cuenta con las credenciales uniandes, ya que tiene convenios con la plataforma) llene los campos con su información. Una vez creada, en el [portal](https://portal.azure.com) en el panel de servicios encontrar"a Cuentas de almacenamiento. 
+#### Cree una cuenta en [Azure](https://azure.microsoft.com/es-es/free/students) , (se aconseja crear la cuenta con las credenciales uniandes, ya que tiene convenios con la plataforma) llene los campos con su información. Una vez creada, en el [portal](https://portal.azure.com) en el panel de servicios encontrar Cuentas de almacenamiento. 
 
-Agregue una diligenciando el formulario, la creación tenga en cuenta que el nombre que se le asigne 
-se tendrá que usar en las variables de entorno. Cuando se le notifique la creación  entre a 
-esta y seleccione los servicio Blobs, y agregue un contenedor llamado ```pictures```, y deje el nivel de acceso en privada. 
+Allí agregue una cuenta de almacenamiento diligenciando el formulario, tenga en cuenta que  el nombre que se le asigne 
+se tendrá que usar en las variables de entorno. Cuando se le notifique la creación, entre a 
+esta y seleccione los servicios Blobs, y agregue un contenedor llamado ```pictures```, y deje el nivel de acceso en privada. 
 
 Solo resta sacar las variables de entorno necesarias en la configuración de heroku, vuelva al almacenamiento creado y 
-en configuraciones obtenga las llaves de acceso. 
+en configuraciones obtenga el ```ACCOUNT_KEY``` en el la opcion de llaves de acceso. 
 
 También debe ir a firma de acceso compartido, en los servicios compartidos seleccione solo blob y en permisos permitidos solo lectura 
 configure un rango de fecha de caducidad adecuado. Luego de llenar el formulario puede generar la cadena de conexión y SAS
-#### Debe completar la variables de entorno de la siguiente forma:
+#### Debe agregar las variables de entorno en heroku:
 *  ```ACCOUNT_NAME``` el nombre de la cuenta de almacenamiento que asignó
 *  ```ACCOUNT_KEY``` clave de algún key en el menu de claves de acceso 
 *  ```SAS``` token sas generado en firma de acceso compartido 
