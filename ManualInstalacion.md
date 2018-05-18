@@ -37,4 +37,4 @@ configure un rango de fecha de caducidad adecuado. Luego de llenar el formulario
 *  ```ACCOUNT_NAME``` el nombre de la cuenta de almacenamiento que asignó
 *  ```ACCOUNT_KEY``` clave de algún key en el menu de claves de acceso 
 *  ```SAS``` token sas generado en firma de acceso compartido 
-*  ```SORAGE_URL`` https://```nombre del almacenamiento que usted creo```.blob.core.windows.net/pictures/
+*  ```SORAGE_URL``` https://```nombre del almacenamiento que usted creo```.blob.core.windows.net/pictures/
