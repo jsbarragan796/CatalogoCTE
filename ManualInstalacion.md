@@ -49,7 +49,7 @@ Ya con las variables de entorno definidas, se puede proceder a realizar el despl
 * Esto le habilitará ```Connect to GitHub``` busque CatalogoCTE y seleccione ```connect```
 * En ```Manual deploy``` realice un deployment de la rama master haciendo click en ```Deploy Branch```
 
-## Configuracion inicial base de datos
+## Configuración inicial base de datos
 
 Ya con el primer despliegue se puede configurar la base de datos siguiendo estos pasos:
 
@@ -59,6 +59,7 @@ Ya con el primer despliegue se puede configurar la base de datos siguiendo estos
 python manage.py migrate
 python manage.py makemigrations posts   
 python manage.py sqlmigrate posts 0001
+python manage.py migrate 
 ```
 nota: Despues de ingresar un comando y esperar las repuestas de la consola debe volver a abrir otra ```run console ```
 
@@ -77,7 +78,7 @@ En este punto debe volver a realizar el deployment de la rama master, una vez te
 * Inicie sesión y en ```AUTHENTICATION AND AUTHORIZATION``` abra  ```users```
 * Seleccione la cuenta del administrador, edite ```Personal info``` y asigne el rol administrador al perfil y guarde los cambios. 
 
-## Use la aplicación catalogo
+## Use la aplicación catálogo
 
 Solo resta entrar a la pagina donde esta desplegado su proyecto ```https://<NOMBRE DE SU APP EN HEROKU>.herokuapp.com/``` y crear las cuentas de los otros miembros de la organización. 
 
