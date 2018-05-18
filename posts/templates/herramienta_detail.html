@@ -164,7 +164,7 @@
                         <!-- Default panel contents -->
 
                         <div class="panel-heading">Actividades
-                            {% if herramienta.estado == 6 or herramienta.estado == 3 %}
+                            {% if herramienta.estado == 6 or herramienta.estado == 3 and user.is_authenticated %}
                                 <a data-toggle="tooltip" data-placement="auto" title="Agregar Actividad" href="{% url 'catalogo:actividad_create' herramienta.id %}" class="float" id="boton_agregar_actividad" >
                                     <i class="fa fa-plus my-float" ></i>
                                 </a>
@@ -175,10 +175,12 @@
                             <p>En esta lista se encuentran las actividades que se relacionan con {{ herramienta.nombre }}</p>
                         </div>
                         <!-- List group -->
-                        {% if herramienta.estado == 6 or herramienta.estado == 3 %}
+                        {% if herramienta.estado == 3 or herramienta.estado == 4  %}
                             <div class="list-group">
                                 {% for actividad in actividades %}
-                                    <a class="list-group-item" href="{% url 'catalogo:actividad_detail' actividad.id %}">{{ actividad.nombre }}</a>
+                                    {% if actividad.estado == 3 or actividad.estado == 4%}
+                                        <a class="list-group-item" href="{% url 'catalogo:actividad_detail' actividad.id %}">{{ actividad.nombre }}</a>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         {% endif %}

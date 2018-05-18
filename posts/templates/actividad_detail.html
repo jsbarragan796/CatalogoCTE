@@ -47,7 +47,7 @@
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-sm-9">
-                        {% if actividad.estado == 1 or actividad.estado == 2 %}
+                        {% if actividad.estado == 4 %}
                             <h1>Versión modificada: {{ actividad.nombre }}</h1>
                         {% else%}
                             <h1>{{ actividad.nombre }}</h1>
@@ -57,10 +57,10 @@
                         <div>
                             {% if user.is_authenticated %}
                                 {% if actividad.estado == 1 %}
-                                    <a  id="revisar_actividad_btn" class="btn btn-success" href="{% url 'catalogo:actividad_revision' actividad.id %}">Aprobar</a>
+                                    <a  id="revisar_actividad_btn" class="btn btn-success" href="{% url 'catalogo:actividad_revisar' actividad.id %}">Aprobar</a>
                                     <a  id="editar_actividad_btn" class="btn btn-success" href="{% url 'catalogo:actividad_update_revision' actividad.id %}">Editar</a>
                                 {% elif actividad.estado == 2 %}
-                                    <a id="publicar_actividad_btn" class="btn btn-success" href="{% url 'catalogo:publicar' actividad.id %}">Publicar actividad</a>
+                                    <a id="publicar_actividad_btn" class="btn btn-success" href="{% url 'catalogo:actividad_publicar' actividad.id %}">Publicar actividad</a>
                                 {% elif actividad.estado == 6 %}
                                     <a id="publicar_actividad_btn" class="btn btn-success" href="{% url 'catalogo:actividad_update' actividad.id %}">Continuar edición</a>
                                     <button id="eliminar_actividad_btn" type="button" class="btn btn-danger" data-toggle="modal" data-target="#elminarModal">Eliminar</button>
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <a id="agregar_actividad_btn" class="btn btn-success" title="Agregar Actividad" href="{% url 'catalogo:actividad_create' actividad.id %}">Añadir otra Actividad</a>
+                        <a id="agregar_actividad_btn" class="btn btn-success" title="Agregar Actividad" href="{% url 'catalogo:actividad_create' actividad.herramienta_id %}">Añadir otra Actividad</a>
                     </div>
                 </div>
             </div>
