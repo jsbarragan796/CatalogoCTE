@@ -28,7 +28,7 @@
                     <!-- List group -->
                     <div class="list-group">
                         {% for herramienta in herramientas_r %}
-                            <a class="list-group-item" href="{% url 'catalogo:herramienta_detail' herramienta.id %}"> {{ herramienta.nombre }} </a>
+                            <a class="list-group-item" id="{{ herramienta.nombre }}" href="{% url 'catalogo:herramienta_detail' herramienta.id %}"> {{ herramienta.nombre }} </a>
                         {% endfor %}
                     </div>
 
@@ -72,7 +72,7 @@
                     <!-- List group -->
                     <div class="list-group">
                         {% for actividad in actividades_r %}
-                            <a class="list-group-item" href="{% url 'catalogo:actividad_detail' actividad.id %}"> {{ actividad.nombre }} </a>
+                            <a class="list-group-item" id="{{ actividad.nombre }}" href="{% url 'catalogo:actividad_detail' actividad.id %}"> {{ actividad.nombre }} </a>
                         {% endfor %}
                     </div>
 
@@ -90,10 +90,10 @@
                         {% for actividad in actividades_p %}
                             <div class="list-group-item">
                                 <div class="row">
-                                    <a class="item-publicar col-sm-9" href="{% url 'catalogo:actividad_detail' actividad.id %}">
+                                    <a class="item-publicar col-sm-9" id="{{ actividad.nombre }}" href="{% url 'catalogo:actividad_detail' actividad.id %}">
                                         {{ actividad.nombre }}
                                     </a>
-                                    <a class="item-publicar col-sm-3" href="{% url 'catalogo:actividad_publicar' actividad.id %}">
+                                    <a class="item-publicar col-sm-3" id="Publicar_{{ actividad.nombre }}" href="{% url 'catalogo:actividad_publicar' actividad.id %}">
                                         Publicar
                                     </a>
                                 </div>
@@ -128,7 +128,7 @@
                     </div>
                     <div class="list-group">
                         {% for actividad in actividades_r %}
-                            <a class="list-group-item" href="{% url 'catalogo:actividad_detail' actividad.id %}">{{ actividad.nombre }}</a>
+                            <a class="list-group-item" id="{{ actividad.nombre }}" href="{% url 'catalogo:actividad_detail' actividad.id %}">{{ actividad.nombre }}</a>
                         {% endfor %}
                     </div>
                 </div>
