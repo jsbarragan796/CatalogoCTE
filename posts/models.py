@@ -130,3 +130,10 @@ class RecursoTutorial(models.Model):
     tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE)
     url = models.CharField(max_length=200, null=False, blank=False)
     descripcion = models.CharField(max_length=500, null=False, blank=False)
+
+
+class CorreoConfiguracion(models.Model):
+    limit = models.PositiveSmallIntegerField(null=True, blank=True)
+    lastSend = models.CharField(max_length=500, null=True, blank=True)
+    pending = models.PositiveSmallIntegerField(null=True, blank=True)
+

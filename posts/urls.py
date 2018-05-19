@@ -23,4 +23,7 @@ urlpatterns = [
     url(r'^actividad_detail/(?P<pk>\d+)/$', views.actividad_detail, name='actividad_detail'),
     url(r'^actividad_update/(?P<pk>\d+)$', views.actividad_update, name='actividad_update'),
     url(r'^actividad_update_revision/(?P<pk>\d+)$', views.actividad_update_revision, name='actividad_update_revision'),
+    url(r'^notificaciones/$', views.notification, name='notificaciones'),
+    url(r'^notificacion_create/$', views.number_correo_create, name='notificacion_create'),
+    url(r'^notificacion_update/(?P<pk>\d+)/$', views.number_correo_update, name='notificacion_update')
 ]

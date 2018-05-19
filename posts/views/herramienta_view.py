@@ -6,6 +6,7 @@ from posts.forms import HerramientaForm, HerramientaUpdateForm, HerramientaRevis
 from django.contrib import messages
 from posts.models import Perfil, Actividad
 from .borradores_view import *
+from .correomenu_view import *
 
 
 # Herramientas
@@ -45,6 +46,7 @@ def herramienta_create(request):
                                                      revisor1=revisor1, revisor2=revisor2, autor=autor,
                                                      descripcion=descripcion, urlReferencia=urlreferencia, logo=logo)
             herramienta.save()
+            add_pending()
             messages.success(request, 'Se ha creado con éxito la herramienta ' +
                              str(herramienta.nombre) + ', los cambios serán publicados '
                                                        'hasta terminar el proceso de vigía',
@@ -106,6 +108,7 @@ def herramienta_update(request, pk):
                 herramienta.logo = logo
                 herramienta.estado = 1
                 herramienta.save()
+                add_pending()
                 messages.success(request, 'La herramienta ' + str(herramienta.nombre) +
                                  ' se ha enviado a gestión de conocimiento', extra_tags='alert alert-success')
                 return borradores_list(request)
@@ -123,6 +126,7 @@ def herramienta_update(request, pk):
                                                            descripcion=descripcion, urlReferencia=urlReferencia, logo=logo)
                 herramienta_n.save()
                 if estado == 1:
+                    add_pending()
                     messages.success(request, 'La herramienta ' + str(herramienta.nombre) +
                                      ' se ha enviado a gestión de conocimiento', extra_tags='alert alert-success')
                 else:
@@ -299,6 +303,7 @@ def herramienta_revisar(request, pk):
         else:
             herramienta.revisor2 = request.user.id
             herramienta.estado = 2
+            reduce_pending()
         herramienta.save()
         messages.success(request, 'Ha revisado con éxito a '+str(herramienta.nombre), extra_tags='alert alert-success')
         return redirect(reverse('catalogo:vigia'))
