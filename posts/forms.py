@@ -2,7 +2,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import forms
 from django.contrib.auth.models import User
-from posts.models import Herramienta, Actividad
+from posts.models import Herramienta, Actividad, CorreoConfiguracion
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import password_validation
 
@@ -34,17 +34,19 @@ class HerramientaForm(ModelForm):
                                                  label="Sistema Operativo",
                                                  choices=SISTEMAS_OPERATIVOS)
     PLATAFORMAS = (
-        ('Plataforma 1', 'Plataforma 1'),
-        ('Plataforma 2', 'Plataforma 2'),
-        ('Plataforma 3', 'Plataforma 3'),
-        ('Plataforma 4', 'Plataforma 4'),
+        ('Moodle', 'Moodle'),
+        ('Blackboard', 'Blackboard'),
+        ('WordPress', 'WordPress'),
+        ('Drupal', 'Drupal'),
+        ('Joomla', 'Joomla'),
     )
     plataforma = forms.ChoiceField(label="Plataforma", choices=PLATAFORMAS)
     LICENCIA = (
-        ('Licencia 1', 'Licencia 1'),
-        ('Licencia 2', 'Licencia 2'),
-        ('Licencia 3', 'Licencia 3'),
-        ('Licencia 4', 'Licencia 4'),
+        ('Apache License Version 2.0', 'Apache License Version 2.0'),
+        ('GNU GENERAL PUBLIC ', 'GNU GENERAL PUBLIC '),
+        ('MIT License', 'MIT License'),
+        ('UnLicense', 'UnLicense'),
+        ('GNU AFFERO GENERAL PUBLIC LICENSE', 'GNU AFFERO GENERAL PUBLIC LICENSE'),
     )
     licencia = forms.ChoiceField(label="Licencia", choices=LICENCIA)
 
@@ -84,17 +86,19 @@ class HerramientaUpdateForm(ModelForm):
                                choices=ESTADO)
 
     PLATAFORMAS = (
-        ('Plataforma 1', 'Plataforma 1'),
-        ('Plataforma 2', 'Plataforma 2'),
-        ('Plataforma 3', 'Plataforma 3'),
-        ('Plataforma 4', 'Plataforma 4'),
+        ('Moodle', 'Moodle'),
+        ('Blackboard', 'Blackboard'),
+        ('WordPress', 'WordPress'),
+        ('Drupal', 'Drupal'),
+        ('Joomla', 'Joomla'),
     )
     plataforma = forms.ChoiceField(label="Plataforma", choices=PLATAFORMAS)
     LICENCIA = (
-        ('Licencia 1', 'Licencia 1'),
-        ('Licencia 2', 'Licencia 2'),
-        ('Licencia 3', 'Licencia 3'),
-        ('Licencia 4', 'Licencia 4'),
+        ('Apache License Version 2.0', 'Apache License Version 2.0'),
+        ('GNU GENERAL PUBLIC ', 'GNU GENERAL PUBLIC '),
+        ('MIT License', 'MIT License'),
+        ('UnLicense', 'UnLicense'),
+        ('GNU AFFERO GENERAL PUBLIC LICENSE', 'GNU AFFERO GENERAL PUBLIC LICENSE'),
     )
     licencia = forms.ChoiceField(label="Licencia", choices=LICENCIA)
 
@@ -126,17 +130,19 @@ class HerramientaRevisionForm(ModelForm):
                                                  choices=SISTEMAS_OPERATIVOS)
 
     PLATAFORMAS = (
-        ('Plataforma 1', 'Plataforma 1'),
-        ('Plataforma 2', 'Plataforma 2'),
-        ('Plataforma 3', 'Plataforma 3'),
-        ('Plataforma 4', 'Plataforma 4'),
+        ('Moodle', 'Moodle'),
+        ('Blackboard', 'Blackboard'),
+        ('WordPress', 'WordPress'),
+        ('Drupal', 'Drupal'),
+        ('Joomla', 'Joomla'),
     )
     plataforma = forms.ChoiceField(label="Plataforma", choices=PLATAFORMAS)
     LICENCIA = (
-        ('Licencia 1', 'Licencia 1'),
-        ('Licencia 2', 'Licencia 2'),
-        ('Licencia 3', 'Licencia 3'),
-        ('Licencia 4', 'Licencia 4'),
+        ('Apache License Version 2.0', 'Apache License Version 2.0'),
+        ('GNU GENERAL PUBLIC ', 'GNU GENERAL PUBLIC '),
+        ('MIT License', 'MIT License'),
+        ('UnLicense', 'UnLicense'),
+        ('GNU AFFERO GENERAL PUBLIC LICENSE', 'GNU AFFERO GENERAL PUBLIC LICENSE'),
     )
     licencia = forms.ChoiceField(label="Licencia", choices=LICENCIA)
 
@@ -363,3 +369,10 @@ class ActividadRevisionForm(ModelForm):
     class Meta:
         model = Herramienta
         fields = ['nombre', 'url', 'instrucciones', 'descripcion']
+
+
+class numeroCorreoForm(ModelForm):
+    numeroCorreo = forms.CharField(label="Numero revisiones pendientes para envio deCorreo", max_length=100)
+    class Meta:
+        model = CorreoConfiguracion
+        fields = ['numeroCorreo']

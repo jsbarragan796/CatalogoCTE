@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Notificaciones{% endblock %}
+
+{% block contenido  %}
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div class="{{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p id="mensaje">{{ message }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if user.is_authenticated and user.perfil.role == 1 %}
+        <div class="centered">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Configuración  </div>
+                    <div >
+                        {% if leng > 0  %}
+
+                            {% for con in config %}
+                                <div class="panel-body">
+                                    <p>Este es el panel de configuración del número de elementos en revisión para enviar notificación al equipo Conecta-te</p>
+                                    <hr>
+                                    <p>  <strong>Limite de elementos en revisión para mandar correo : </strong>  {{ con.limit }}</p>
+                                    <p>  <strong>Número de elementos en estado revisión : </strong>  {{ con.pending }}</p>
+                                    <p>  <strong>Fecha de envío de ultimo correo : </strong>  {{ con.lastSend }}</p>
+                                </div>
+
+                                <a class="list-group-item" href="{% url 'catalogo:notificacion_update' con.id %}">Editar</a>
+                            {% endfor %}
+
+                        {% else %}
+                            <div class="panel-body">
+                                    <p>Este es el panel de configuración del número de elementos en revisión para enviar notificación al equipo Conecta-te</p>
+                                    <hr>
+                                </div>
+                            <a class="list-group-item" href="{% url 'catalogo:notificacion_create'%}">Configurar</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block extra_script %}
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+{% endblock %}
+

@@ -6,11 +6,11 @@ from posts.forms import ActividadForm, ActividadUpdateForm, ActividadRevisionFor
 from django.contrib import messages
 from posts.models import Perfil, Actividad
 from .borradores_view import *
-
+from .correomenu_view import *
 
 # Actividades
 def actividad_create(request, pk):
-    actividad = Actividad.objects.get(id=pk)
+    herramienta = Herramienta.objects.get(id=pk)
     if request.method == 'POST':
         form = ActividadForm(request.POST, request.FILES)
         if form.is_valid():
@@ -25,11 +25,11 @@ def actividad_create(request, pk):
             url = cleaned_data.get('url')
             id_anterior = 0
 
-            actividad = Actividad.objects.create(actividad=actividad, id_anterior=id_anterior, nombre=nombre,
+            actividad = Actividad.objects.create(herramienta=herramienta, id_anterior=id_anterior, nombre=nombre,
                                                  instrucciones=instrucciones, estado=estado,
                                                  revisor1=revisor1, revisor2=revisor2, autor=autor,
                                                  descripcion=descripcion, url=url)
-
+            add_pending()
             actividad.save()
             messages.success(request, 'Se ha creado con éxito la Actividad ' +
                              str(actividad.nombre) + ', los cambios serán publicados '
@@ -63,6 +63,7 @@ def actividad_update(request, pk):
                                  extra_tags='alert alert-success')
                 return borradores_list(request)
             elif int(estado) == 1 and actividad.estado == 6:
+                add_pending()
                 actividad.nombre = nombre
                 actividad.url = url
                 actividad.instrucciones = instrucciones
@@ -80,11 +81,13 @@ def actividad_update(request, pk):
                 revisor2 = 0
                 autor = request.user.id
                 actividad_n = Actividad.objects.create(id_anterior=pk, nombre=nombre,
-                                                           instrucciones=instrucciones, estado=estado,
-                                                           revisor1=revisor1, revisor2=revisor2, autor=autor,
-                                                           descripcion=descripcion, url=url)
+                                                       instrucciones=instrucciones, estado=estado,
+                                                       revisor1=revisor1, revisor2=revisor2, autor=autor,
+                                                       descripcion=descripcion, url=url,
+                                                       herramienta=actividad.herramienta)
                 actividad_n.save()
                 if estado == 1:
+                    add_pending()
                     messages.success(request, 'La actividad ' + str(actividad.nombre) +
                                      ' se ha enviado a gestión de conocimiento', extra_tags='alert alert-success')
                 else:
@@ -236,6 +239,7 @@ def actividad_revisar(request, pk):
         else:
             actividad.revisor2 = request.user.id
             actividad.estado = 2
+            reduce_pending()
         actividad.save()
         messages.success(request, 'Ha revisado con éxito a ' + str(actividad.nombre),
                          extra_tags='alert alert-success')

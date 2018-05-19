@@ -91,6 +91,7 @@
                             <div><div><strong>URL:</strong></div><div><a href="{{ herramienta.urlReferencia }}" target="_blank">{{ herramienta.urlReferencia }}</a></div></div>
                             <div><div><strong>Plataforma:</strong></div><div>{{ herramienta.plataforma }}</div></div>
                             <div><div><strong>Licencia:</strong></div><div>{{ herramienta.licencia }}</div></div>
+                            <div><div><strong>Estado:</strong></div><div>{{ herramienta.estado }}</div></div>
                             <div >
 
                             </div>
@@ -106,7 +107,7 @@
                     <div class="col-md-10">
                         <div class="row">
                             <div class="col-sm-9">
-                                <h1> Versión anterior:{{ herramienta.nombre }}</h1>
+                                <h1> Versión anterior: {{ herramienta_old.nombre }}</h1>
                             </div>
                         </div>
                         <div class="row">
@@ -124,6 +125,7 @@
                                     <div><div><strong>URL:</strong></div><div><a href="{{ herramienta_old.urlReferencia }}" target="_blank">{{ herramienta_old.urlReferencia }}</a></div></div>
                                     <div><div><strong>Plataforma:</strong></div><div>{{ herramienta_old.plataforma }}</div></div>
                                     <div><div><strong>Licencia:</strong></div><div>{{ herramienta_old.licencia }}</div></div>
+                                    <div><div><strong>Estado:</strong></div><div>{{ herramienta_old.estado }}</div></div>
                                     <div>
                                     </div>
                                 </div>
@@ -162,7 +164,7 @@
                         <!-- Default panel contents -->
 
                         <div class="panel-heading">Actividades
-                            {% if herramienta.estado == 6 %}
+                            {% if herramienta.estado == 6 or herramienta.estado == 3 and user.is_authenticated %}
                                 <a data-toggle="tooltip" data-placement="auto" title="Agregar Actividad" href="{% url 'catalogo:actividad_create' herramienta.id %}" class="float" id="boton_agregar_actividad" >
                                     <i class="fa fa-plus my-float" ></i>
                                 </a>
@@ -173,11 +175,15 @@
                             <p>En esta lista se encuentran las actividades que se relacionan con {{ herramienta.nombre }}</p>
                         </div>
                         <!-- List group -->
-                        <div class="list-group">
-                            {% for actividad in actividades %}
-                                <a class="list-group-item" href="{% url 'catalogo:actividad_detail' actividad.id %}">{{ actividad.nombre }}</a>
-                            {% endfor %}
-                        </div>
+                        {% if herramienta.estado == 3 or herramienta.estado == 4  %}
+                            <div class="list-group">
+                                {% for actividad in actividades %}
+                                    {% if actividad.estado == 3 or actividad.estado == 4%}
+                                        <a class="list-group-item" id="{{ actividad.nombre }}" href="{% url 'catalogo:actividad_detail' actividad.id %}">{{ actividad.nombre }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

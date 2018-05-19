@@ -6,6 +6,7 @@ from posts.forms import HerramientaForm, HerramientaUpdateForm, HerramientaRevis
 from django.contrib import messages
 from posts.models import Perfil, Actividad
 from .borradores_view import *
+from .correomenu_view import *
 
 
 # Herramientas
@@ -45,6 +46,7 @@ def herramienta_create(request):
                                                      revisor1=revisor1, revisor2=revisor2, autor=autor,
                                                      descripcion=descripcion, urlReferencia=urlreferencia, logo=logo)
             herramienta.save()
+            add_pending()
             messages.success(request, 'Se ha creado con éxito la herramienta ' +
                              str(herramienta.nombre) + ', los cambios serán publicados '
                                                        'hasta terminar el proceso de vigía',
@@ -106,6 +108,7 @@ def herramienta_update(request, pk):
                 herramienta.logo = logo
                 herramienta.estado = 1
                 herramienta.save()
+                add_pending()
                 messages.success(request, 'La herramienta ' + str(herramienta.nombre) +
                                  ' se ha enviado a gestión de conocimiento', extra_tags='alert alert-success')
                 return borradores_list(request)
@@ -123,6 +126,7 @@ def herramienta_update(request, pk):
                                                            descripcion=descripcion, urlReferencia=urlReferencia, logo=logo)
                 herramienta_n.save()
                 if estado == 1:
+                    add_pending()
                     messages.success(request, 'La herramienta ' + str(herramienta.nombre) +
                                      ' se ha enviado a gestión de conocimiento', extra_tags='alert alert-success')
                 else:
@@ -279,7 +283,11 @@ def herramientas_vigia(request):
         herramientas_r = Herramienta.objects.all().filter(estado=1).exclude(autor=request.user.id). \
             exclude(revisor1=request.user.id)
         herramientas_p = Herramienta.objects.all().filter(estado=2)
-        context = {'herramientas_r': herramientas_r, 'herramientas_p': herramientas_p}
+
+        actividades_r = Actividad.objects.all().filter(estado=1).exclude(autor=request.user.id). \
+            exclude(revisor1=request.user.id)
+        actividades_p = Actividad.objects.all().filter(estado=2)
+        context = {'herramientas_r': herramientas_r, 'herramientas_p': herramientas_p, 'actividades_p': actividades_p, 'actividades_r': actividades_r}
         return render(request, 'vigia.html', context)
     else:
         herramientas = Herramienta.objects.all().filter(estado=3)
@@ -295,6 +303,7 @@ def herramienta_revisar(request, pk):
         else:
             herramienta.revisor2 = request.user.id
             herramienta.estado = 2
+            reduce_pending()
         herramienta.save()
         messages.success(request, 'Ha revisado con éxito a '+str(herramienta.nombre), extra_tags='alert alert-success')
         return redirect(reverse('catalogo:vigia'))
@@ -311,11 +320,20 @@ def herramienta_publicar(request, pk):
         messages.success(request, 'Ha sido publicado con éxito a '+str(herramienta.nombre), extra_tags='alert alert-success')
 
         if not herramienta.id_anterior == 0:
-            herramienta_delete = Herramienta.objects.get(id=herramienta.id_anterior)
-            herramienta_delete.delete()
-
-        herramienta.id_anterior = 0
-        herramienta.save()
+            herramienta_bloqueada = Herramienta.objects.get(id=herramienta.id_anterior)
+            herramienta_bloqueada.nombre = herramienta.nombre
+            herramienta_bloqueada.sistemaOperativo = herramienta.sistemaOperativo
+            herramienta_bloqueada.urlReferencia = herramienta.urlReferencia
+            herramienta_bloqueada.plataforma = herramienta.plataforma
+            herramienta_bloqueada.fichaTecnica = herramienta.fichaTecnica
+            herramienta_bloqueada.licencia = herramienta.licencia
+            herramienta_bloqueada.descripcion = herramienta.descripcion
+            herramienta_bloqueada.logo = herramienta.logo
+            herramienta_bloqueada.estado = 3
+            herramienta_bloqueada.save()
+            herramienta.delete()
+        else:
+            herramienta.save()
         return redirect(reverse('catalogo:vigia'))
     else:
         herramientas = Herramienta.objects.all().filter(estado=3)
