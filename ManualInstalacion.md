@@ -39,6 +39,14 @@ También debe ir a ```firma de acceso compartido```, en los servicios compartido
 *  ```SAS``` token sas generado en firma de acceso compartido 
 *  ```SORAGE_URL``` https://```nombre del almacenamiento que usted creo```.blob.core.windows.net/pictures/
 
+## Servidor de correo electrónico
+La aplicación cuenta con un servido de correo electrónico SMTP, para que el servicio de correo funcione correctamente se deben declarar de las siguientes variables de entorno. Consulte con su servidor de correo estos parámetros, acá se muestra un ejemplo para correos electrónicos de Gmail. 
+
+* ```EMAIL_HOST```=smtp.gmail.com
+* ```EMAIL_HOST_USER```= <cuenta>@gmail.com
+* ```EMAIL_HOST_PASSWORD```=<contraseña>
+* ```EMAIL_PORT```= 587
+* ```EMAIL_USE_TLS```=True
 
 ## Heroku deployment
 
