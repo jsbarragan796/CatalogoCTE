@@ -50,7 +50,7 @@
                             {% for actividad in actividades_b %}
                                 <li class="list-group-item">
                                     <div>{{ actividad.nombre }}
-                                        <a class="btn btn-success" href="{% url 'catalogo:actividad_detail' actividad.id %}"> Abrir </a>
+                                        <a class="btn btn-success" id="Actividad_{{ actividad.nombre }}" href="{% url 'catalogo:actividad_detail' actividad.id %}"> Abrir </a>
                                     </div>
                                 </li>
                             {% endfor %}
