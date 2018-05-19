@@ -7,6 +7,3 @@ envs
 .idea/*.*
 activate
 .idea
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py

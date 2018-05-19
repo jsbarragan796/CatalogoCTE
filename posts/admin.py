@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.contrib import admin
 
 # Register your models here.
-from posts.models import Herramienta, Tutorial, Actividad, Perfil
+from posts.models import Herramienta, Tutorial, Actividad, Perfil , CorreoConfiguracion
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
@@ -34,5 +34,6 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(Herramienta)
 admin.site.register(Tutorial)
 admin.site.register(Actividad)
+admin.site.register(CorreoConfiguracion)
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)

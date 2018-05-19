@@ -2,7 +2,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import forms
 from django.contrib.auth.models import User
-from posts.models import Herramienta, Actividad
+from posts.models import Herramienta, Actividad, CorreoConfiguracion
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import password_validation
 
@@ -369,3 +369,10 @@ class ActividadRevisionForm(ModelForm):
     class Meta:
         model = Herramienta
         fields = ['nombre', 'url', 'instrucciones', 'descripcion']
+
+
+class numeroCorreoForm(ModelForm):
+    numeroCorreo = forms.CharField(label="Numero revisiones pendientes para envio deCorreo", max_length=100)
+    class Meta:
+        model = CorreoConfiguracion
+        fields = ['numeroCorreo']

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% block title %}Creación configuración{% endblock %}
+
+{% block contenido  %}
+    <div class="centered"><h1>Creación configuración notificaciones</h1></div>
+    <div class="formulario">
+        <form method="post" enctype="multipart/form-data" class="col-md-8">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <br/>
+            <div class="row">
+                <div class="centered">
+                    <button class="btn btn-success" id="boton_actualizar_herramienta">Crear</button>
+                    <a class="btn btn-danger" href="{% url 'catalogo:notificaciones' %}" class="cancel">Cancelar</a>
+                </div>
+            </div>
+        </form>
+        <br/>
+    </div>
+{% endblock %}
+{% block extra_script %}
+    <script>
+        $(".nav").find(".active").removeClass("active");
+        var actual = $("#Notificaciones")
+        $(actual).addClass("active");
+    </script>
+{% endblock %}

@@ -6,7 +6,7 @@ from posts.forms import ActividadForm, ActividadUpdateForm, ActividadRevisionFor
 from django.contrib import messages
 from posts.models import Perfil, Actividad
 from .borradores_view import *
-
+from .correomenu_view import *
 
 # Actividades
 def actividad_create(request, pk):
@@ -29,7 +29,7 @@ def actividad_create(request, pk):
                                                  instrucciones=instrucciones, estado=estado,
                                                  revisor1=revisor1, revisor2=revisor2, autor=autor,
                                                  descripcion=descripcion, url=url)
-
+            add_pending()
             actividad.save()
             messages.success(request, 'Se ha creado con éxito la Actividad ' +
                              str(actividad.nombre) + ', los cambios serán publicados '
@@ -63,6 +63,7 @@ def actividad_update(request, pk):
                                  extra_tags='alert alert-success')
                 return borradores_list(request)
             elif int(estado) == 1 and actividad.estado == 6:
+                add_pending()
                 actividad.nombre = nombre
                 actividad.url = url
                 actividad.instrucciones = instrucciones
@@ -86,6 +87,7 @@ def actividad_update(request, pk):
                                                        herramienta=actividad.herramienta)
                 actividad_n.save()
                 if estado == 1:
+                    add_pending()
                     messages.success(request, 'La actividad ' + str(actividad.nombre) +
                                      ' se ha enviado a gestión de conocimiento', extra_tags='alert alert-success')
                 else:
@@ -237,6 +239,7 @@ def actividad_revisar(request, pk):
         else:
             actividad.revisor2 = request.user.id
             actividad.estado = 2
+            reduce_pending()
         actividad.save()
         messages.success(request, 'Ha revisado con éxito a ' + str(actividad.nombre),
                          extra_tags='alert alert-success')
