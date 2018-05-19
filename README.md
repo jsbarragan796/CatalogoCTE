@@ -9,5 +9,10 @@ Proyecto Catálogo para Uniandes Conecta-Te
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/607e4bb070664cde86893cb46662a845)](https://www.codacy.com/app/paalvarado10/CatalogoCTE?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fabianmedina09/CatalogoCTE&amp;utm_campaign=Badge_Grade)
 
 #### Links Heroku (Master/Develop):
-https://catalogocte.herokuapp.com/ |  https://catalogodevelop.herokuapp.com/
+[master](https://catalogocte.herokuapp.com/) |  [develop](https://catalogodevelop.herokuapp.com/)
+
+### Manual de instalación
+
+[Acá encontrará el manual](https://github.com/fabianmedina09/CatalogoCTE/blob/master/ManualInstalacion.md)
+
 
