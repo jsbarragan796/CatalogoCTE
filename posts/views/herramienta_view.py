@@ -315,11 +315,20 @@ def herramienta_publicar(request, pk):
         messages.success(request, 'Ha sido publicado con éxito a '+str(herramienta.nombre), extra_tags='alert alert-success')
 
         if not herramienta.id_anterior == 0:
-            herramienta_delete = Herramienta.objects.get(id=herramienta.id_anterior)
-            herramienta_delete.delete()
-
-        herramienta.id_anterior = 0
-        herramienta.save()
+            herramienta_bloqueada = Herramienta.objects.get(id=herramienta.id_anterior)
+            herramienta_bloqueada.nombre = herramienta.nombre
+            herramienta_bloqueada.sistemaOperativo = herramienta.sistemaOperativo
+            herramienta_bloqueada.urlReferencia = herramienta.urlReferencia
+            herramienta_bloqueada.plataforma = herramienta.plataforma
+            herramienta_bloqueada.fichaTecnica = herramienta.fichaTecnica
+            herramienta_bloqueada.licencia = herramienta.licencia
+            herramienta_bloqueada.descripcion = herramienta.descripcion
+            herramienta_bloqueada.logo = herramienta.logo
+            herramienta_bloqueada.estado = 3
+            herramienta_bloqueada.save()
+            herramienta.delete()
+        else:
+            herramienta.save()
         return redirect(reverse('catalogo:vigia'))
     else:
         herramientas = Herramienta.objects.all().filter(estado=3)
