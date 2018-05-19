@@ -54,9 +54,9 @@ def usuario_create(request):
             profile_model = Perfil.objects.get(user_id=user.id)
             profile_model.role = roles[0]
 
-            foto_uploaded = True if 'logo' in request.FILES else False
+            foto_uploaded = True if 'foto' in request.FILES else False
             if foto_uploaded:
-                myfile = request.FILES['logo']
+                myfile = request.FILES['foto']
                 chu = myfile.chunks()
                 archivo = ''
                 for chunk in chu:

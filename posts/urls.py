@@ -16,8 +16,9 @@ urlpatterns = [
     url(r'^herramienta_detail/(?P<pk>\d+)/$', views.herramienta_detail, name='herramienta_detail'),
     url(r'^vigia/$', views.herramientas_vigia, name='vigia'),
     url(r'^revisar/(?P<pk>\d+)$', views.herramienta_revisar, name='revisar'),
-    url(r'^actividad_revision/(?P<pk>\d+)$', views.actividad_revision, name='actividad_revision'),
+    url(r'^actividad_revisar/(?P<pk>\d+)$', views.actividad_revisar, name='actividad_revisar'),
     url(r'^publicar/(?P<pk>\d+)$', views.herramienta_publicar, name='publicar'),
+    url(r'^actividad_publicar/(?P<pk>\d+)$', views.actividad_publicar, name='actividad_publicar'),
     url(r'^borradores/$', views.borradores_list, name='borradores'),
     url(r'^actividad_create/(?P<pk>\d+)$', views.actividad_create, name='actividad_create'),
     url(r'^actividad_detail/(?P<pk>\d+)/$', views.actividad_detail, name='actividad_detail'),
@@ -26,4 +27,3 @@ urlpatterns = [
     url(r'^notificaciones/$', views.notification, name='notificaciones'),
     url(r'^notificacion_create/$', views.number_correo_create, name='notificacion_create'),
     url(r'^notificacion_update/(?P<pk>\d+)/$', views.number_correo_update, name='notificacion_update')
-]
