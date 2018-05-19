@@ -409,148 +409,7 @@ class FunctionalTest(TestCase):
     #     self.assertIn('Cuentas de usuarios', self.browser.title)
 
 
-    def test_13_CCAS_4_visualizacion_actividad_admin(self):
-        self.browser.get(URL)
-        self.browser.find_element_by_id('id_login').click()
-        nombre_usuario = self.browser.find_element_by_name('username')
-        nombre_usuario.send_keys('admin')
-        clave = self.browser.find_element_by_id('password')
-        clave.send_keys('catalogo2018')
-        self.browser.find_element_by_id('boton_login').click()
-        self.browser.find_element_by_id('Sicua Plus').click()
-        self.browser.find_element_by_id('actividad sicua').click()
-        try:
-            self.browser.find_element_by_id('agregar_actividad_btn')
-            self.assertTrue(True)
-        except Exception:
-            self.assertTrue(False)
-
-
-    def test_13_CCAS_4_visualizacion_actividad_miembroGIT(self):
-        self.browser.get(URL)
-        self.browser.find_element_by_id('id_login').click()
-        nombre_usuario = self.browser.find_element_by_name('username')
-        nombre_usuario.send_keys('fmedina')
-        clave = self.browser.find_element_by_id('password')
-        clave.send_keys('fmedina2018')
-        self.browser.find_element_by_id('boton_login').click()
-        self.browser.find_element_by_id('Sicua Plus').click()
-        self.browser.find_element_by_id('actividad sicua').click()
-        try:
-            self.browser.find_element_by_id('agregar_actividad_btn')
-            self.assertTrue(True)
-        except Exception:
-            self.assertTrue(False)
-
-    def test_13_CCAS_4_visualizacion_actividad_usuario(self):
-        self.browser.get(URL)
-        self.browser.find_element_by_id('Sicua Plus').click()
-        self.browser.find_element_by_id('actividad sicua').click()
-        try:
-            self.browser.find_element_by_id('agregar_actividad_btn')
-            self.assertTrue(True)
-        except Exception:
-            self.assertTrue
-
-    def test_14_CCAS_11_crear_borrador_actividad_miembroGIT(self):
-        self.browser.get(URL)
-        self.browser.find_element_by_id('id_login').click()
-        nombre_usuario = self.browser.find_element_by_name('username')
-        nombre_usuario.send_keys('fmedina')
-        clave = self.browser.find_element_by_id('password')
-        clave.send_keys('fmedina2018')
-        self.browser.find_element_by_id('boton_login').click()
-        self.browser.find_element_by_id('Sicua Plus').click()
-        self.browser.find_element_by_id('boton_agregar_actividad').click()
-        nombre_actividad = self.browser.find_element_by_id('id_nombre')
-        nombre_actividad.send_keys('Create GIT')
-        url_actividad = self.browser.find_element_by_id('id_url')
-        url_actividad.send_keys('UrlActividad')
-        id_instrucciones = self.browser.find_element_by_id('id_instrucciones')
-        id_instrucciones.send_keys('Instrucciones prueba crear actividad')
-        id_descripcion = self.browser.find_element_by_id('id_descripcion')
-        id_descripcion.send_keys('Descripcion prueba crear actividad')
-        self.browser.find_element_by_id('id_estado_0').click()
-        self.browser.find_element_by_id('boton_add').click()
-        self.browser.find_element_by_id('mis_borradores').click()
-        self.browser.find_element_by_id('Actividad_Create GIT').click()
-        self.browser.find_element_by_id('eliminar_actividad_btn').click()
-        actividad_name=self.browser.find_element_by_id('actividad_name')
-        actividad_name.send_keys('Create GIT')
-        self.browser.find_element_by_id('eliminar_actividad_btn_modal').click()
-        self.assertTrue(True)
-
-
-    def test_zz1_CCAS_11_crear_actividad_miembroGIT(self):
-        self.browser.get(URL)
-        self.browser.find_element_by_id('id_login').click()
-        nombre_usuario = self.browser.find_element_by_name('username')
-        nombre_usuario.send_keys('fmedina')
-        clave = self.browser.find_element_by_id('password')
-        clave.send_keys('fmedina2018')
-        self.browser.find_element_by_id('boton_login').click()
-        self.browser.find_element_by_id('Sicua Plus').click()
-        self.browser.find_element_by_id('boton_agregar_actividad').click()
-        nombre_actividad = self.browser.find_element_by_id('id_nombre')
-        nombre_actividad.send_keys('Create GIT')
-        url_actividad = self.browser.find_element_by_id('id_url')
-        url_actividad.send_keys('UrlActividad')
-        id_instrucciones = self.browser.find_element_by_id('id_instrucciones')
-        id_instrucciones.send_keys('Instrucciones prueba crear actividad')
-        id_descripcion = self.browser.find_element_by_id('id_descripcion')
-        id_descripcion.send_keys('Descripcion prueba crear actividad')
-        self.browser.find_element_by_id('id_estado_1').click()
-        self.browser.find_element_by_id('boton_add').click()
-        self.assertTrue(True)
-
-    #
-    def test_zz2_CCAS_98_publicar_actividad(self):
-        self.browser.get(URL)
-        self.browser.find_element_by_id('id_login').click()
-        nombre_usuario = self.browser.find_element_by_name('username')
-        nombre_usuario.send_keys('test')
-        clave = self.browser.find_element_by_id('password')
-        clave.send_keys('test2018')
-        self.browser.find_element_by_id('boton_login').click()
-        self.browser.find_element_by_id('vigia').click()
-        self.browser.find_element_by_id('Create GIT').click()
-        self.browser.find_element_by_id('revisar_actividad_btn').click()
-        self.browser.find_element_by_id('usuario_loqueado_info').click()
-        self.browser.find_element_by_xpath('//a[@href="/logout/"]').click()
-        self.browser.find_element_by_id('id_login').click()
-        nombre_usuario = self.browser.find_element_by_name('username')
-        nombre_usuario.send_keys('admin')
-        clave = self.browser.find_element_by_id('password')
-        clave.send_keys('catalogo2018')
-        self.browser.find_element_by_id('boton_login').click()
-        self.browser.find_element_by_id('vigia').click()
-        self.browser.find_element_by_id('Create GIT').click()
-        self.browser.find_element_by_id('revisar_actividad_btn').click()
-        self.browser.find_element_by_id('vigia').click()
-        self.browser.find_element_by_id('Publicar_Create GIT').click()
-        self.assertTrue(True)
-
-
-
-
-    def test_zz3_CCAS_13_eliminar_actividad_admin(self):
-        self.browser.get(URL)
-        self.browser.find_element_by_id('id_login').click()
-        nombre_usuario = self.browser.find_element_by_name('username')
-        nombre_usuario.send_keys('admin')
-        clave = self.browser.find_element_by_id('password')
-        clave.send_keys('catalogo2018')
-        self.browser.find_element_by_id('boton_login').click()
-        self.browser.find_element_by_id('Sicua Plus').click()
-        self.browser.find_element_by_id('Create GIT').click()
-        self.browser.find_element_by_id('eliminar_actividad_btn').click()
-        actividad_name = self.browser.find_element_by_id('actividad_name')
-        actividad_name.send_keys('Create GIT')
-        self.browser.find_element_by_id('eliminar_actividad_btn_modal').click()
-        self.assertTrue(True)
-
-
-    # def test_14_CCAS_11_crear_actividad_admin(self):
+    # def test_13_CCAS_4_visualizacion_actividad_admin(self):
     #     self.browser.get(URL)
     #     self.browser.find_element_by_id('id_login').click()
     #     nombre_usuario = self.browser.find_element_by_name('username')
@@ -559,9 +418,52 @@ class FunctionalTest(TestCase):
     #     clave.send_keys('catalogo2018')
     #     self.browser.find_element_by_id('boton_login').click()
     #     self.browser.find_element_by_id('Sicua Plus').click()
+    #     self.browser.find_element_by_id('actividad sicua').click()
+    #     try:
+    #         self.browser.find_element_by_id('agregar_actividad_btn')
+    #         self.assertTrue(True)
+    #     except Exception:
+    #         self.assertTrue(False)
+    #
+    #
+    # def test_13_CCAS_4_visualizacion_actividad_miembroGIT(self):
+    #     self.browser.get(URL)
+    #     self.browser.find_element_by_id('id_login').click()
+    #     nombre_usuario = self.browser.find_element_by_name('username')
+    #     nombre_usuario.send_keys('fmedina')
+    #     clave = self.browser.find_element_by_id('password')
+    #     clave.send_keys('fmedina2018')
+    #     self.browser.find_element_by_id('boton_login').click()
+    #     self.browser.find_element_by_id('Sicua Plus').click()
+    #     self.browser.find_element_by_id('actividad sicua').click()
+    #     try:
+    #         self.browser.find_element_by_id('agregar_actividad_btn')
+    #         self.assertTrue(True)
+    #     except Exception:
+    #         self.assertTrue(False)
+
+    # def test_13_CCAS_4_visualizacion_actividad_usuario(self):
+    #     self.browser.get(URL)
+    #     self.browser.find_element_by_id('Sicua Plus').click()
+    #     self.browser.find_element_by_id('actividad sicua').click()
+    #     try:
+    #         self.browser.find_element_by_id('agregar_actividad_btn')
+    #         self.assertTrue(True)
+    #     except Exception:
+    #         self.assertTrue
+
+    # def test_14_CCAS_11_crear_borrador_actividad_miembroGIT(self):
+    #     self.browser.get(URL)
+    #     self.browser.find_element_by_id('id_login').click()
+    #     nombre_usuario = self.browser.find_element_by_name('username')
+    #     nombre_usuario.send_keys('fmedina')
+    #     clave = self.browser.find_element_by_id('password')
+    #     clave.send_keys('fmedina2018')
+    #     self.browser.find_element_by_id('boton_login').click()
+    #     self.browser.find_element_by_id('Sicua Plus').click()
     #     self.browser.find_element_by_id('boton_agregar_actividad').click()
     #     nombre_actividad = self.browser.find_element_by_id('id_nombre')
-    #     nombre_actividad.send_keys('Crear Admin')
+    #     nombre_actividad.send_keys('Create GIT')
     #     url_actividad = self.browser.find_element_by_id('id_url')
     #     url_actividad.send_keys('UrlActividad')
     #     id_instrucciones = self.browser.find_element_by_id('id_instrucciones')
@@ -570,40 +472,96 @@ class FunctionalTest(TestCase):
     #     id_descripcion.send_keys('Descripcion prueba crear actividad')
     #     self.browser.find_element_by_id('id_estado_0').click()
     #     self.browser.find_element_by_id('boton_add').click()
+    #     self.browser.find_element_by_id('mis_borradores').click()
+    #     self.browser.find_element_by_id('Actividad_Create GIT').click()
+    #     self.browser.find_element_by_id('eliminar_actividad_btn').click()
+    #     actividad_name=self.browser.find_element_by_id('actividad_name')
+    #     actividad_name.send_keys('Create GIT')
+    #     self.browser.find_element_by_id('eliminar_actividad_btn_modal').click()
     #     self.assertTrue(True)
-
-
-     # def test_15_CCAS_12_editar_actividad_admin(self):
-     #    self.browser.get(URL)
-     #    self.browser.find_element_by_id('id_login').click()
-     #    nombre_usuario = self.browser.find_element_by_name('username')
-     #    nombre_usuario.send_keys('admin')
-     #    clave = self.browser.find_element_by_id('password')
-     #    clave.send_keys('catalogo2018')
-     #    self.browser.find_element_by_id('boton_login').click()
-     #    self.browser.find_element_by_id('Foros de Sicua').click()
-     #    self.browser.find_element_by_id('ActividadTest1').click()
-     #    self.browser.find_element_by_id('editar_actividad_btn').click()
-     #    nombre_actividad = self.browser.find_element_by_id('id_nombre')
-     #    nombre_actividad.clear()
-     #    nombre_actividad.send_keys('ActividadEdit A')
-     #    self.browser.find_element_by_id('boton_actualizar_herramienta').click()
-     #    self.assertTrue(True)
-
     #
-    # def test_15_CCAS_12_editar_actividad_GIT(self):
+    #
+    # def test_zz1_CCAS_11_crear_actividad_miembroGIT(self):
     #     self.browser.get(URL)
     #     self.browser.find_element_by_id('id_login').click()
     #     nombre_usuario = self.browser.find_element_by_name('username')
     #     nombre_usuario.send_keys('fmedina')
     #     clave = self.browser.find_element_by_id('password')
-    #     clave.send_keys('fmedina2018')
+    #     clave.send_keys('catalogo2018')
     #     self.browser.find_element_by_id('boton_login').click()
-    #     self.browser.find_element_by_id('Foros de Sicua').click()
-    #     self.browser.find_element_by_id('ActividadTest1').click()
-    #     self.browser.find_element_by_id('editar_actividad_btn').click()
+    #     self.browser.find_element_by_id('Foros Moodle').click()
+    #     self.browser.find_element_by_id('boton_agregar_actividad').click()
     #     nombre_actividad = self.browser.find_element_by_id('id_nombre')
-    #     nombre_actividad.clear()
-    #     nombre_actividad.send_keys('ActividadEdit GIT')
-    #     self.browser.find_element_by_id('boton_actualizar_herramienta').click()
+    #     nombre_actividad.send_keys('Create GIT')
+    #     url_actividad = self.browser.find_element_by_id('id_url')
+    #     url_actividad.send_keys('UrlActividad')
+    #     id_instrucciones = self.browser.find_element_by_id('id_instrucciones')
+    #     id_instrucciones.send_keys('Instrucciones prueba crear actividad')
+    #     id_descripcion = self.browser.find_element_by_id('id_descripcion')
+    #     id_descripcion.send_keys('Descripcion prueba crear actividad')
+    #     self.browser.find_element_by_id('id_estado_1').click()
+    #     self.browser.find_element_by_id('boton_add').click()
     #     self.assertTrue(True)
+    #
+    #
+    # def test_zz2_CCAS_98_publicar_actividad(self):
+    #     self.browser.get(URL)
+    #     self.browser.find_element_by_id('id_login').click()
+    #     nombre_usuario = self.browser.find_element_by_name('username')
+    #     nombre_usuario.send_keys('palvarado')
+    #     clave = self.browser.find_element_by_id('password')
+    #     clave.send_keys('catalogo2018')
+    #     self.browser.find_element_by_id('boton_login').click()
+    #     self.browser.find_element_by_id('vigia').click()
+    #     self.browser.find_element_by_id('Create GIT').click()
+    #     self.browser.find_element_by_id('revisar_actividad_btn').click()
+    #     self.browser.find_element_by_id('usuario_loqueado_info').click()
+    #     self.browser.find_element_by_xpath('//a[@href="/logout/"]').click()
+    #     self.browser.find_element_by_id('id_login').click()
+    #     nombre_usuario = self.browser.find_element_by_name('username')
+    #     nombre_usuario.send_keys('admin')
+    #     clave = self.browser.find_element_by_id('password')
+    #     clave.send_keys('catalogo2018')
+    #     self.browser.find_element_by_id('boton_login').click()
+    #     self.browser.find_element_by_id('vigia').click()
+    #     self.browser.find_element_by_id('Create GIT').click()
+    #     self.browser.find_element_by_id('revisar_actividad_btn').click()
+    #     self.browser.find_element_by_id('vigia').click()
+    #     self.browser.find_element_by_id('Publicar_Create GIT').click()
+    #     self.assertTrue(True)
+    #
+    #
+    # def test_zz3_CCAS_13_eliminar_actividad_admin(self):
+    #     self.browser.get(URL)
+    #     self.browser.find_element_by_id('id_login').click()
+    #     nombre_usuario = self.browser.find_element_by_name('username')
+    #     nombre_usuario.send_keys('admin')
+    #     clave = self.browser.find_element_by_id('password')
+    #     clave.send_keys('catalogo2018')
+    #     self.browser.find_element_by_id('boton_login').click()
+    #     self.browser.find_element_by_id('Sicua Plus').click()
+    #     self.browser.find_element_by_id('Create GIT').click()
+    #     self.browser.find_element_by_id('eliminar_actividad_btn').click()
+    #     actividad_name = self.browser.find_element_by_id('actividad_name')
+    #     actividad_name.send_keys('Create GIT')
+    #     self.browser.find_element_by_id('eliminar_actividad_btn_modal').click()
+    #     self.assertTrue(True)
+
+
+    # def test_15_CCAS_12_editar_actividad_GIT(self):
+    #    self.browser.get(URL)
+    #    self.browser.find_element_by_id('id_login').click()
+    #    nombre_usuario = self.browser.find_element_by_name('username')
+    #    nombre_usuario.send_keys('admin')
+    #    clave = self.browser.find_element_by_id('password')
+    #    clave.send_keys('catalogo2018')
+    #    self.browser.find_element_by_id('boton_login').click()
+    #    self.browser.find_element_by_id('Foros Moodle').click()
+    #    self.browser.find_element_by_id('Create GIT').click()
+    #    self.browser.find_element_by_id('editar_actividad_btn').click()
+    #    nombre_actividad = self.browser.find_element_by_id('id_instrucciones')
+    #    nombre_actividad.clear()
+    #    nombre_actividad.send_keys('Edicion de actividad, prueba de historia de usuario')
+    #    self.browser.find_element_by_id('boton_actualizar_actividad').click()
+    #    self.assertTrue(True)
+
