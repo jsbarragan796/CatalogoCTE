@@ -90,7 +90,7 @@ def check_send_correo (pending, limit):
             #                "Le recordamos que es su responsabilidad revisar las herramientas o actividades." \
 
             html_content = render_to_string('email.html')
-            print(html_content)
+           
             msg = EmailMultiAlternatives(str(subject), str('prueba 01'), config('EMAIL_HOST_USER', default=''), [to_email])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
