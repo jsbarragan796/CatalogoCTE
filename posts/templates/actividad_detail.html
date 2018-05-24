@@ -83,9 +83,11 @@
                             <div><div><strong>Instrucciones:</strong></div><div>{{ actividad.instrucciones }}</div></div>
                         </div>
                     </div>
+                     {% if user.is_authenticated %}
                     <div class="col-sm-3">
                         <a id="agregar_actividad_btn" class="btn btn-success" title="Agregar Actividad" href="{% url 'catalogo:actividad_create' actividad.herramienta_id %}">Añadir otra Actividad</a>
                     </div>
+                     {% endif %}
                 </div>
             </div>
             <br/>
